@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer — TimeSync 1.0</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <!-- ========== CABEÇALHO ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.svg" alt="TimeSync Logo" width="40" />
+        <div>
+          <div class="brand-name">TimeSync</div>
+          <div class="brand-slogan">Synchronize your time. Simplify your life.</div>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="nav-menu">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="task-manager.html" class="nav-link">Task Manager</a></li>
+          <li><a href="pomodoro.html" class="nav-link active">Pomodoro Timer</a></li>
+          <li><a href="calendar.html" class="nav-link">Calendar</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle">☰</button>
+    </div>
+  </header>
+
+  <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+  <main class="container fade-in">
+    <section class="about">
+      <h2>Pomodoro Timer</h2>
+      <p>Manage your focus and rest periods with the <strong>TimeSync Pomodoro</strong>.  
+      Increase your productivity and maintain a balance between focus and breaks.</p>
+    </section>
+
+    <section class="pomodoro fade-in delay-1">
+      <div class="card timer-card">
+        <h3 id="mode-label">Focus Mode</h3>
+        <div id="timer-display" class="timer-display">25:00</div>
+        <div class="controls">
+          <button id="start-btn" class="btn btn-primary">Start</button>
+          <button id="pause-btn" class="btn btn-outline">Pause</button>
+          <button id="reset-btn" class="btn btn-outline">Reset</button>
+        </div>
+        <p id="session-counter">Sessions completed: 0</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== RODAPÉ ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> TimeSync. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPT ESPECÍFICO ========== -->
+  <script>
+    const timerDisplay = document.getElementById('timer-display');
+    const startBtn = document.getElementById('start-btn');
+    const pauseBtn = document.getElementById('pause-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const modeLabel = document.getElementById('mode-label');
+    const sessionCounter = document.getElementById('session-counter');
+
+    let timeLeft = 25 * 60; // 25 minutos
+    let timer;
+    let isRunning = false;
+    let isFocus = true;
+    let sessions = 0;
+
+    const focusSound = new Audio('assets/sounds/start.mp3');
+    const breakSound = new Audio('assets/sounds/end.mp3');
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function startTimer() {
+      if (isRunning) return;
+      isRunning = true;
+      document.querySelector('.timer-display').classList.add('pulsar');
+      timer = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          isRunning = false;
+          document.querySelector('.timer-display').classList.remove('pulsar');
+          if (isFocus) {
+            sessions++;
+            sessionCounter.textContent = `Sessions completed: ${sessions}`;
+            breakSound.pause();
+            focusSound.play();
+            isFocus = false;
+            modeLabel.textContent = 'Rest Mode';
+            timeLeft = 5 * 60;
+          } else {
+            focusSound.pause();
+            breakSound.play();
+            isFocus = true;
+            modeLabel.textContent = 'Focus Mode';
+            timeLeft = 25 * 60;
+          }
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timer);
+      isRunning = false;
+      document.querySelector('.timer-display').classList.remove('pulsar');
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      isRunning = false;
+      isFocus = true;
+      timeLeft = 25 * 60;
+      updateTimerDisplay();
+      document.querySelector('.timer-display').classList.remove('pulsar');
+      modeLabel.textContent = 'Focus Mode';
+    }
+
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+
+    updateTimerDisplay();
+  </script>
+
+  <style>
+    .timer-card {
+      text-align: center;
+      padding: 2rem;
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+
+    .timer-display {
+      font-family: "Orbitron";
+      font-size: 4rem;
+      margin: 1rem 0;
+      color: #5BC0EB;
+    }
+
+    .controls button {
+      margin: 0.5rem;
+      min-width: 100px;
+    }
+
+    .pulsar {
+      animation: pulsar 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulsar {
+      0%, 100% { transform: scale(1); color: #5BC0EB; }
+      50% { transform: scale(1.08); color: #8b5cf6; }
+    }
+  </style>
+</body>
+</html>

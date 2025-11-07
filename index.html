@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TimeSync 1.0 — Synchronize your time. Simplify your life.</title>
+  <meta name="description" content="TimeSync 1.0 — Task Manager, Pomodoro Timer e Daily Goals. Ferramenta de produtividade." />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="TimeSync — Home">
+        <!-- logo inline -->
+        <img src="assets/logo.svg" alt="TimeSync Logo" width="40" />
+          <defs>
+            <linearGradient id="lg" x1="0" x2="1">
+              <stop offset="0" stop-color="#1B2A49"/>
+              <stop offset="1" stop-color="#5BC0EB"/>
+            </linearGradient>
+          </defs>
+          <circle cx="60" cy="60" r="56" fill="url(#lg)"/>
+          <g transform="translate(60,60)" fill="#fff" opacity="0.95">
+            <path d="M2 -34 L14 -34 A30 30 0 0 1 26 -12 L6 -4 A14 14 0 0 0 2 -20 Z"/>
+            <path d="M-36 8 A44 44 0 0 1 -2 50 L-8 22 A30 30 0 0 0 -36 8 Z" opacity="0.9"/>
+          </g>
+        </svg>
+
+        <div class="brand-text">
+          <div class="brand-name">TimeSync</div>
+          <div class="brand-slogan">Synchronize your time. Simplify your life.</div>
+        </div>
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Navegação principal">
+        <ul id="nav-menu">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="task-manager.html" class="nav-link">Task Manager</a></li>
+          <li><a href="pomodoro.html" class="nav-link">Pomodoro Timer</a></li>
+          <li><a href="calendar.html" class="nav-link">Calendar</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1 class="hero-title">Synchronize your <span class="accent">time</span>, simplify your <span class="accent">life</span>.</h1>
+        <p class="hero-lead">TimeSync 1.0 combines design, focus, and simplicity: manage tasks, stay focused with Pomodoro, and track daily goals.</p>
+        <div class="hero-actions">
+          <a href="task-manager.html" class="btn btn-primary">Open Task Manager</a>
+          <a href="pomodoro.html" class="btn btn-outline">Open Pomodoro</a>
+        </div>
+
+        <ul class="hero-features">
+          <li>✔ Task Manager — create, edit and categorize</li>
+          <li>✔ Pomodoro Timer — sounds and notifications</li>
+          <li>✔ Calendar — save your events</li>
+        </ul>
+      </div>
+
+      <div class="hero-right">
+        <!-- Card que mostra tarefas de hoje + mini timer -->
+        <div class="card home-card">
+          <div class="card-section">
+            <h4>🗂️ Today's tasks</h4>
+            <ul id="home-tasks" class="mock-tasks">
+              <!-- preenchido via JS -->
+              <li class="muted">Loading tasks…</li>
+            </ul>
+            <a href="task-manager.html" class="link">Open Task Manager →</a>
+          </div>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid #efefef">
+
+          <div class="card-section">
+            <h4>⏱️ Quick Pomodoro</h4>
+            <div id="mini-timer" class="mini-timer">
+              <div id="mini-display" class="timer-display">25:00</div>
+              <div class="timer-controls">
+                <button id="mini-start" class="btn btn-small btn-primary">Start</button>
+                <button id="mini-pause" class="btn btn-small btn-outline" disabled>Pause</button>
+                <button id="mini-reset" class="btn btn-small btn-outline">Reset</button>
+              </div>
+            </div>
+            <small class="muted">It syncs with the main Pomodoro timer when opened.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>What's New in TimeSync 1.0</h2>
+      <p class="muted">Beta version with Task Manager, customizable Pomodoro, and Daily Goals — designed to help students and professionals stay focused and meet deadlines.</p>
+
+      <div class="features-overview">
+        <a style="color: black;" href="task-manager.html">
+        <div class="card">
+          <h3>Task Manager</h3>
+          <p>Create, organize, and prioritize tasks with quick categories and filters.</p>
+        </div>
+        </a>
+        <a style="color: black;" href="pomodoro.html">
+        <div class="card">
+          <h3>Pomodoro Timer</h3>
+          <p>Stopwatch with sounds, session history, and focus animation.</p>
+        </div>
+        </a>
+        <a style="color: black;" href="calendar.html">
+        <div class="card">
+          <h3>Calendar</h3>
+          <p>Calendar with event addition feature for better time management.</p>
+        </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-card">
+        <h3>Ready to synchronize your time?</h3>
+        <p class="muted">Add your first task or start a Pomodoro.</p>
+        <div class="cta-row">
+          <a href="task-manager.html" class="btn btn-primary">Add Task</a>
+          <a href="pomodoro.html" class="btn btn-outline">Go to Pomodoro</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> TimeSync. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Dependências JS compartilhadas -->
+  <script src="js/main.js" defer></script>
+
+  <!-- Script da Home: integra tarefas + mini Pomodoro -->
+  <script>
+    (function(){
+      // ---------- Tarefas de Hoje (usa chave 'tasks' do Task Manager) ----------
+      function loadTasksFromStorage() {
+        try {
+          return JSON.parse(localStorage.getItem('tasks')) || [];
+        } catch(e) {
+          return [];
+        }
+      }
+
+      function renderHomeTasks() {
+        const tasks = loadTasksFromStorage().filter(t => !t.done);
+        const container = document.getElementById('home-tasks');
+        container.innerHTML = '';
+        if (!tasks.length) {
+          container.innerHTML = '<li class="muted">No tasks pending — good job!</li>';
+          return;
+        }
+        // mostrar até 3 tarefas
+        tasks.slice(0,3).forEach((t, i) => {
+          const li = document.createElement('li');
+          li.innerHTML = '<span><span class=\"dot ' + (t.category==='Estudos' ? 'dot-sky' : (t.category==='Pessoal' ? 'dot-purple' : 'dot-blue')) + '\"></span>'
+                       + (t.text.length>48 ? t.text.slice(0,48)+'…' : t.text) + '</span>'
+                       + '<span class=\"muted\">' + (t.duration? (' • '+t.duration+'m') : '') + '</span>';
+          container.appendChild(li);
+        });
+        if (tasks.length > 3) {
+          const li = document.createElement('li');
+          li.innerHTML = '<a href="task-manager.html" class="link">See all tasks (' + tasks.length + ') →</a>';
+          container.appendChild(li);
+        }
+      }
+
+      // Atualiza quando há mudanças no localStorage (outras abas)
+      window.addEventListener('storage', function(e){
+        if (e.key === 'tasks' || e.key === null) renderHomeTasks();
+      });
+
+      // Inicializar
+      renderHomeTasks();
+
+      // ---------- Mini Pomodoro (sincroniza estado em localStorage 'pomodoro_state') ----------
+      const display = document.getElementById('mini-display');
+      const startBtn = document.getElementById('mini-start');
+      const pauseBtn = document.getElementById('mini-pause');
+      const resetBtn = document.getElementById('mini-reset');
+
+      // estado salvo: { timeLeft: Number(seconds), isRunning: Boolean, isFocus: Boolean }
+      function loadPomodoroState(){
+        try { return JSON.parse(localStorage.getItem('pomodoro_state')) || null; } catch(e){ return null; }
+      }
+      function savePomodoroState(state){ localStorage.setItem('pomodoro_state', JSON.stringify(state)); }
+
+      let state = loadPomodoroState() || { timeLeft: 25*60, isRunning: false, isFocus: true, sessions: 0 };
+      let interval = null;
+
+      function formatSeconds(s){ const m = Math.floor(s/60).toString().padStart(2,'0'); const sec = (s%60).toString().padStart(2,'0'); return m + ':' + sec; }
+      function updateDisplay(){ display.textContent = formatSeconds(state.timeLeft); }
+
+      function startMini(){
+        if (state.isRunning) return;
+        state.isRunning = true;
+        savePomodoroState(state);
+        startBtn.disabled = true; pauseBtn.disabled = false;
+        display.classList.add('pulsar');
+        interval = setInterval(() => {
+          state.timeLeft--;
+          if (state.timeLeft <= 0) {
+            // finalizar sessão
+            clearInterval(interval);
+            state.isRunning = false;
+            if (state.isFocus) {
+              state.sessions = (state.sessions || 0) + 1;
+              state.isFocus = false;
+              state.timeLeft = 5*60; // pausa curta
+            } else {
+              state.isFocus = true;
+              state.timeLeft = 25*60;
+            }
+            // tocar som (se disponível)
+            try {
+              const sound = new Audio(state.isFocus ? 'assets/sounds/start.mp3' : 'assets/sounds/end.mp3');
+              sound.play().catch(()=>{ /* autoplay bloqueio */});
+            } catch(e){}
+            savePomodoroState(state);
+            display.classList.remove('pulsar');
+            startBtn.disabled = false; pauseBtn.disabled = true;
+            updateDisplay();
+            return;
+          }
+          savePomodoroState(state);
+          updateDisplay();
+        }, 1000);
+      }
+
+      function pauseMini(){
+        clearInterval(interval);
+        state.isRunning = false;
+        savePomodoroState(state);
+        startBtn.disabled = false; pauseBtn.disabled = true;
+        display.classList.remove('pulsar');
+      }
+
+      function resetMini(){
+        clearInterval(interval);
+        state = { timeLeft: 25*60, isRunning:false, isFocus:true, sessions: state.sessions || 0 };
+        savePomodoroState(state);
+        startBtn.disabled = false; pauseBtn.disabled = true;
+        display.classList.remove('pulsar');
+        updateDisplay();
+      }
+
+      // sincroniza com alterações do localStorage (por exemplo, abertura da página pomodoro.html)
+      window.addEventListener('storage', (e)=>{
+        if (e.key === 'pomodoro_state') {
+          const remote = loadPomodoroState();
+          if (remote) {
+            // atualiza o estado local e UI
+            state = remote;
+            if (state.isRunning) {
+              // garantir que interval esteja rodando
+              if (!interval) startMini();
+            } else {
+              pauseMini();
+            }
+            updateDisplay();
+          }
+        }
+      });
+
+      // Eventos dos botões
+      startBtn.addEventListener('click', startMini);
+      pauseBtn.addEventListener('click', pauseMini);
+      resetBtn.addEventListener('click', resetMini);
+
+      // inicialização da UI
+      updateDisplay();
+      if (state.isRunning) {
+        // retomar se estava rodando (cuidado com múltiplas abas): inicia intervalo local
+        startMini();
+      } else {
+        startBtn.disabled = false;
+        pauseBtn.disabled = true;
+      }
+    })();
+  </script>
+</body>
+</html>

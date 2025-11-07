@@ -1,0 +1,570 @@
+/* ============================
+   TimeSync 1.0 — Estilo principal
+   Paleta: Azul-marinho (#1B2A49), Azul-claro (#5BC0EB), Branco, Toques de Roxo
+   Fontes: Orbitron (títulos), Poppins (texto)
+   ============================ */
+
+:root {
+  --navy: #1B2A49;
+  --blue: #5BC0EB;
+  --purple: #7A5AF8;
+  --white: #ffffff;
+  --gray: #e9ecf2;
+  --text: #1b1b2f;
+  --transition: 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+  background-color: var(--white);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* =======================
+   Estrutura geral
+   ======================= */
+.container {
+  width: min(90%, 1200px);
+  margin: 0 auto;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--purple);
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =======================
+   Cabeçalho / Navbar
+   ======================= */
+.site-header {
+  background-color: var(--navy);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.brand-name {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.brand-slogan {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link,
+.nav-cta {
+  color: var(--white);
+  font-weight: 500;
+  transition: opacity var(--transition);
+}
+
+.nav-link:hover,
+.nav-cta:hover {
+  opacity: 0.7;
+}
+
+.nav-link.active {
+  border-bottom: 2px solid var(--blue);
+}
+
+.nav-cta {
+  background-color: var(--blue);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+
+/* Toggle mobile */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.8rem;
+}
+
+/* =======================
+   Hero
+   ======================= */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 4rem 0;
+  flex-wrap: wrap;
+}
+
+.hero-left {
+  flex: 1 1 500px;
+}
+
+.hero-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.8rem;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+
+.hero-title .accent {
+  color: var(--blue);
+}
+
+.hero-lead {
+  color: #444;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.hero-right {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Mockup */
+.mockup {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 320px;
+  overflow: hidden;
+  animation: fadeIn 1s ease forwards;
+}
+
+.mockup-header {
+  background: var(--navy);
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.mock-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--blue);
+  border-radius: 50%;
+}
+
+.mock-body {
+  padding: 1rem;
+}
+
+.mock-section {
+  margin-bottom: 1.2rem;
+}
+
+.mock-title {
+  font-family: "Orbitron", sans-serif;
+  color: var(--navy);
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.mock-tasks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mock-tasks li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--gray);
+  font-size: 0.9rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.dot-blue { background: var(--blue); }
+.dot-purple { background: var(--purple); }
+.dot-sky { background: #81d4fa; }
+
+.progress-bar {
+  background: var(--gray);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 8px;
+  margin-bottom: 0.3rem;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  height: 100%;
+  border-radius: 10px;
+}
+
+.timer-display {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+/* =======================
+   Seções
+   ======================= */
+.about {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.about h2 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.features-overview {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 2rem;
+}
+
+.card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* CTA */
+.cta-section {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.cta-card {
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: var(--white);
+  padding: 3rem;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  animation: pulse 5s infinite;
+}
+
+.cta-card .btn {
+  margin: 0 0.5rem;
+}
+
+/* =======================
+   Botões
+   ======================= */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn-outline {
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  background: transparent;
+}
+
+.btn-primary:hover {
+  background: var(--blue);
+  transform: scale(1.05);
+}
+
+.btn-outline:hover {
+  background: var(--purple);
+  color: var(--white);
+  transform: scale(1.05);
+}
+
+.btn-small {
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* =======================
+   Rodapé
+   ======================= */
+.site-footer {
+  background: var(--navy);
+  color: var(--white);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+/* =======================
+   Calendário
+   ======================= */
+
+.calendar-card {
+  max-width: 700px;
+  margin: 3rem auto;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  padding: 2rem;
+  text-align: center;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+#month-year {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.day-name {
+  font-weight: 600;
+  color: var(--purple);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.day {
+  background: var(--gray);
+  border-radius: 12px;
+  padding: 0.8rem 0;
+  position: relative;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.day:hover {
+  background: var(--blue);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.day.empty {
+  background: transparent;
+  box-shadow: none;
+  cursor: default;
+}
+
+.day-num {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.dot {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-blue {
+  background: var(--blue);
+}
+
+/* ===== Modal (Adicionar Evento) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  width: 90%;
+  max-width: 420px;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content h3 {
+  font-family: "Orbitron", sans-serif;
+  color: var(--navy);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--gray);
+  font-family: inherit;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+
+/* =======================
+   Animações
+   ======================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.fade-in.delay-1 { animation-delay: 0.3s; }
+.fade-in.delay-2 { animation-delay: 0.6s; }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(91,192,235,0); }
+  50% { box-shadow: 0 0 25px rgba(91,192,235,0.4); }
+}
+
+/* =======================
+   Responsividade
+   ======================= */
+@media (max-width: 800px) {
+  .main-nav ul {
+    display: none;
+    flex-direction: column;
+    background: var(--navy);
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .main-nav ul.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-right {
+    margin-top: 2rem;
+  }
+
+    .calendar-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .calendar-grid {
+    gap: 0.4rem;
+  }
+
+  #month-year {
+    font-size: 1.2rem;
+  }
+}
+
+.muted {
+  color: #666;
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager — TimeSync 1.0</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <!-- ========== CABEÇALHO ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.svg" alt="TimeSync Logo" width="40" />
+        <div>
+          <div class="brand-name">TimeSync</div>
+          <div class="brand-slogan">Synchronize your time. Simplify your life.</div>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="nav-menu">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="task-manager.html" class="nav-link active">Task Manager</a></li>
+          <li><a href="pomodoro.html" class="nav-link">Pomodoro Timer</a></li>
+          <li><a href="calendar.html" class="nav-link">Calendar</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle">☰</button>
+    </div>
+  </header>
+
+  <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+  <main class="container fade-in">
+    <section class="about">
+      <h2>Task Manager</h2>
+      <p>Organize your daily activities with the <strong>TimeSync Task Manager</strong>.  
+      Add tasks, mark them as completed, and keep everything under control.</p>
+    </section>
+
+    <section class="task-manager fade-in delay-1">
+      <div class="card">
+        <h3>Add New Task</h3>
+        <form id="task-form">
+          <input type="text" id="task-input" placeholder="Describe your task..." required>
+          <select id="task-category">
+            <option value="Trabalho">Work</option>
+            <option value="Estudos">Studies</option>
+            <option value="Pessoal">Personal</option>
+          </select>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+      </div>
+
+      <div class="card fade-in delay-1">
+        <h3>Tasks</h3>
+        <div class="filter">
+          <label for="filter-category">Filter by category:</label>
+          <select id="filter-category">
+            <option value="Todas">All</option>
+            <option value="Trabalho">Work</option>
+            <option value="Estudos">Studies</option>
+            <option value="Pessoal">Personal</option>
+          </select>
+        </div>
+
+        <ul id="task-list" class="task-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== RODAPÉ ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> TimeSync. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPT ESPECÍFICO ========== -->
+  <script>
+    const taskForm = document.getElementById('task-form');
+    const taskInput = document.getElementById('task-input');
+    const taskList = document.getElementById('task-list');
+    const taskCategory = document.getElementById('task-category');
+    const filterCategory = document.getElementById('filter-category');
+
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    function renderTasks(filter = 'Todas') {
+      taskList.innerHTML = '';
+      const filteredTasks = tasks.filter(t => filter === 'Todas' || t.category === filter);
+      filteredTasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        li.className = 'fade-in';
+        li.innerHTML = `
+          <span class="${task.done ? 'done' : ''}">
+            <strong>[${task.category}]</strong> ${task.text}
+          </span>
+          <div>
+            <button onclick="toggleTask(${index})" class="btn btn-small btn-outline">${task.done ? 'Uncheck' : 'Finish'}</button>
+            <button onclick="deleteTask(${index})" class="btn btn-small btn-primary">Delete</button>
+          </div>
+        `;
+        taskList.appendChild(li);
+      });
+    }
+
+    function saveTasks() {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    taskForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const text = taskInput.value.trim();
+      const category = taskCategory.value;
+      if (text) {
+        tasks.push({ text, category, done: false });
+        saveTasks();
+        renderTasks(filterCategory.value);
+        taskInput.value = '';
+      }
+    });
+
+    filterCategory.addEventListener('change', e => {
+      renderTasks(e.target.value);
+    });
+
+    window.toggleTask = index => {
+      tasks[index].done = !tasks[index].done;
+      saveTasks();
+      renderTasks(filterCategory.value);
+    };
+
+    window.deleteTask = index => {
+      tasks.splice(index, 1);
+      saveTasks();
+      renderTasks(filterCategory.value);
+    };
+
+    renderTasks();
+  </script>
+
+  <style>
+    .task-manager form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    #task-input, #task-category {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-family: "Poppins";
+    }
+
+    #task-input {
+      flex: 1 1 300px;
+    }
+
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    .task-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .task-list li span.done {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .filter {
+      margin-bottom: 1rem;
+    }
+  </style>
+</body>
+</html>
